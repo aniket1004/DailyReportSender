@@ -25,11 +25,12 @@ def sendReport():
         smtplibobj.login(me,password)
         smtplibobj.sendmail(msg['From'],msg["To"].split(",") + msg["Cc"].split(","), msg.as_string())
         print ("Success")
+        quit()
     except:
         print("Failed to send daily report")
 
 def main():
-    schedule.every().day.at("18:45").do(sendReport)
+    schedule.every().day.at("18:40").do(sendReport)
     time.sleep(25)
     while(True):
         schedule.run_pending()
